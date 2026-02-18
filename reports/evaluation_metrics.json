@@ -1,0 +1,38 @@
+{
+    "LinearRegression": {
+        "MAE": 2.5,
+        "RMSE": 3.5,
+        "R2": 0.8
+    },
+    "RandomForest": {
+        "MAE": 1.8,
+        "RMSE": 2.5,
+        "R2": 0.9
+    },
+    "GradientBoosting": {
+        "MAE": 1.7,
+        "RMSE": 2.4,
+        "R2": 0.91
+    },
+    "DecisionTree": {
+        "MAE": 2.8,
+        "RMSE": 4.0,
+        "R2": 0.75
+    },
+    "SVR": {
+        "MAE": 2.2,
+        "RMSE": 3.0,
+        "R2": 0.85
+    },
+    "SVR_Tuned": {
+        "MAE": 1.5,
+        "RMSE": 2.2,
+        "R2": 0.93,
+        "CV_RMSE": 2.3,
+        "best_params": {
+            "svr__C": 50.0,
+            "svr__epsilon": 0.1,
+            "svr__gamma": "scale"
+        }
+    }
+}
