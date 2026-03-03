@@ -27,12 +27,6 @@ Open and run in order:
 
 All random seeds are fixed at 42. Re-running the notebooks produces identical results.
 
-## Running the Dashboard
-
-```bash
-python app.py
-# Visit http://localhost:5000
-```
 
 ## Expected Outputs
 
