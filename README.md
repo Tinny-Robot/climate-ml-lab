@@ -120,8 +120,3 @@ Running `python app.py` starts a Flask server at `http://localhost:5000` with th
 
 ---
 
-## Contact
-
-**Author**: Nathaniel (Treasure) Handan  
-**Email**: handanfoun@gmail.com  
-**GitHub**: [@Tinny-Robot](https://github.com/Tinny-Robot)
