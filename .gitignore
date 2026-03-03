@@ -2,21 +2,49 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.pyc
+*.pyo
+*.pyd
+.Python
 
 # Virtual environments
 .venv/
 venv/
 env/
+ENV/
+env.bak/
+venv.bak/
 
 # Jupyter
 .ipynb_checkpoints/
 *.nbconvert.ipynb
 
-# Data and models
-/data/raw/
-/data/processed/
-/models/
-/visuals/
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+
+# Data and models (keep structure but not large files)
+/data/raw/*.csv
+/data/processed/*.csv
+/models/*.joblib
+/models/*.pkl
+/models/saved_models/*.joblib
+/models/saved_models/*.pkl
+/visuals/*.png
+/visuals/*.jpg
+/visuals/*.pdf
+!/data/raw/.gitkeep
+!/data/processed/.gitkeep
 
 # Logs
 logs/
@@ -25,3 +53,31 @@ logs/
 # OS files
 .DS_Store
 Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Documentation builds
+docs/_build/
+site/
+
+# Environment variables
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+.cache/
+
+
+# Deployments Files
+deployments/
+*/app.py

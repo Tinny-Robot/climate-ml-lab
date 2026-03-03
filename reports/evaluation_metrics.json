@@ -1,38 +1,37 @@
 {
-    "LinearRegression": {
-        "MAE": 2.5,
-        "RMSE": 3.5,
-        "R2": 0.8
-    },
-    "RandomForest": {
-        "MAE": 1.8,
-        "RMSE": 2.5,
-        "R2": 0.9
-    },
-    "GradientBoosting": {
-        "MAE": 1.7,
-        "RMSE": 2.4,
-        "R2": 0.91
-    },
-    "DecisionTree": {
-        "MAE": 2.8,
-        "RMSE": 4.0,
-        "R2": 0.75
-    },
-    "SVR": {
-        "MAE": 2.2,
-        "RMSE": 3.0,
-        "R2": 0.85
-    },
-    "SVR_Tuned": {
-        "MAE": 1.5,
-        "RMSE": 2.2,
-        "R2": 0.93,
-        "CV_RMSE": 2.3,
-        "best_params": {
-            "svr__C": 50.0,
-            "svr__epsilon": 0.1,
-            "svr__gamma": "scale"
-        }
-    }
+  "GradientBoosting": {
+    "MAE": 0.4819,
+    "RMSE": 0.5979,
+    "R2": 0.9049
+  },
+  "RandomForest": {
+    "MAE": 0.4882,
+    "RMSE": 0.6101,
+    "R2": 0.9010
+  },
+  "LinearRegression": {
+    "MAE": 0.4751,
+    "RMSE": 0.5958,
+    "R2": 0.9056
+  },
+  "Lasso": {
+    "MAE": 0.4723,
+    "RMSE": 0.5933,
+    "R2": 0.9064
+  },
+  "Ridge": {
+    "MAE": 0.4751,
+    "RMSE": 0.5958,
+    "R2": 0.9056
+  },
+  "SVR": {
+    "MAE": 0.5347,
+    "RMSE": 0.6708,
+    "R2": 0.8803
+  },
+  "DecisionTree": {
+    "MAE": 0.5163,
+    "RMSE": 0.6665,
+    "R2": 0.8818
+  }
 }

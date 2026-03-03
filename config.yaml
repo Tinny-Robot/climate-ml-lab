@@ -1,0 +1,217 @@
+# Climate-ML-Lab Configuration File
+# ===================================
+# This file contains all configurable parameters for the project
+
+# Project Metadata
+project:
+  name: "Climate-ML-Lab"
+  version: "1.0.0"
+  author: "Nathaniel (Treasure) Handan"
+  description: "Short-term climate forecasting for Abeokuta, Ogun State, Nigeria"
+
+# Data Collection Settings
+data_collection:
+  location:
+    name: "Abeokuta, Ogun State, Nigeria"
+    latitude: 7.16
+    longitude: 3.35
+    timezone: "Africa/Lagos"
+  
+  date_range:
+    start_date: "2015-01-01"
+    end_date: null  # null = today
+  
+  api:
+    base_url: "https://archive-api.open-meteo.com/v1/era5"
+    timeout: 60
+    hourly_variables:
+      - "temperature_2m"
+      - "relative_humidity_2m"
+      - "wind_speed_10m"
+      - "precipitation"
+      - "surface_pressure"
+
+# Data Preprocessing
+preprocessing:
+  interpolation:
+    method: "time"  # Options: time, linear, polynomial
+    limit_direction: "both"
+  
+  feature_engineering:
+    lag_features:
+      enabled: true
+      lags: [1]  # Days to lag
+    
+    rolling_features:
+      enabled: false
+      windows: [3, 7]  # Days for rolling windows
+    
+    time_features:
+      enabled: true
+      include:
+        - "month"
+        - "day"
+        - "weekday"
+        - "day_of_year"
+
+# Model Training
+model_training:
+  target_variable: "temperature_c"
+  
+  test_split:
+    test_size: 0.2
+    shuffle: false  # Keep false for time series
+  
+  cross_validation:
+    method: "TimeSeriesSplit"
+    n_splits: 5
+  
+  random_state: 42
+  
+  models:
+    linear_regression:
+      enabled: true
+    
+    random_forest:
+      enabled: true
+      n_estimators: 300
+      max_depth: null
+      min_samples_split: 2
+      min_samples_leaf: 1
+    
+    gradient_boosting:
+      enabled: true
+      n_estimators: 100
+      learning_rate: 0.1
+      max_depth: 3
+    
+    decision_tree:
+      enabled: true
+      max_depth: null
+    
+    svr:
+      enabled: true
+      kernel: "rbf"
+      C: 10.0
+      epsilon: 0.1
+      gamma: "scale"
+  
+  hyperparameter_tuning:
+    enabled: true
+    method: "GridSearchCV"
+    scoring: "neg_root_mean_squared_error"
+    cv_splits: 5
+    
+    svr_param_grid:
+      C: [1.0, 5.0, 10.0, 50.0, 100.0]
+      epsilon: [0.01, 0.05, 0.1, 0.2]
+      gamma: ["scale", "auto"]
+
+# Model Evaluation
+evaluation:
+  metrics:
+    - "MAE"   # Mean Absolute Error
+    - "RMSE"  # Root Mean Squared Error
+    - "R2"    # R-squared
+    - "MAPE"  # Mean Absolute Percentage Error
+  
+  uncertainty_quantification:
+    enabled: true
+    confidence_level: 0.95
+    method: "quantile_regression"  # Options: quantile_regression, bootstrap
+
+# Baseline Models
+baseline_models:
+  persistence:
+    enabled: true
+    description: "Yesterday's temperature = Today's temperature"
+  
+  seasonal_average:
+    enabled: true
+    window: 30  # Days for seasonal averaging
+  
+  climatology:
+    enabled: true
+    description: "Historical average for same day of year"
+
+# Visualization
+visualization:
+  style: "seaborn"
+  context: "notebook"
+  palette: "Set2"
+  figure_size: [12, 6]
+  dpi: 300
+  save_format: "png"  # Options: png, pdf, svg
+  
+  plots:
+    time_series:
+      enabled: true
+    correlation_matrix:
+      enabled: true
+    feature_importance:
+      enabled: true
+    residual_analysis:
+      enabled: true
+    prediction_intervals:
+      enabled: true
+
+# Flask Application
+flask_app:
+  debug: false
+  host: "0.0.0.0"
+  port: 5000
+  secret_key: "change-this-in-production"
+  
+  dashboard:
+    historical_days: 30  # Days to show in historical trends
+    forecast_days: 7     # Days to forecast
+
+# Logging
+logging:
+  level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  file: "logs/climate_ml_lab.log"
+  
+  log_to_file: true
+  log_to_console: true
+
+# Paths
+paths:
+  data:
+    raw: "data/raw"
+    processed: "data/processed"
+  models:
+    dir: "models"
+    saved_models: "models/saved_models"
+  reports: "reports"
+  visuals: "visuals"
+  notebooks: "notebooks"
+  logs: "logs"
+
+# Reporting
+reporting:
+  auto_generate: true
+  formats:
+    - "pdf"
+    - "html"
+  
+  include_sections:
+    - "executive_summary"
+    - "methodology"
+    - "data_analysis"
+    - "model_performance"
+    - "feature_importance"
+    - "uncertainty_analysis"
+    - "conclusions"
+    - "appendix"
+  
+  export_metrics: true
+  export_visualizations: true
+
+# Reproducibility
+reproducibility:
+  seed: 42
+  track_experiments: true
+  save_intermediate_results: true
+  version_models: true
